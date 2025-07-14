@@ -6,7 +6,7 @@ import os
 load_dotenv(override=True)
 
 SQLALCHEMY_DB_URL =os.getenv("SQLALCHEMY_DB_URL")
-engine = create_engine(SQLALCHEMY_DB_URL)
+engine = create_engine(SQLALCHEMY_DB_URL,echo=True)
 #print(SQLALCHEMY_DB_URL)
 sessionlocal = sessionmaker(bind = engine)
 
