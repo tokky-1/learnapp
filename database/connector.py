@@ -7,9 +7,8 @@ load_dotenv(override=True)
 
 SQLALCHEMY_DB_URL =os.getenv("SQLALCHEMY_DB_URL")
 engine = create_engine(SQLALCHEMY_DB_URL)
-
+print(SQLALCHEMY_DB_URL)
 sessionlocal = sessionmaker(bind = engine)
-
 
 def get_db():
     db = sessionlocal()
@@ -18,3 +17,4 @@ def get_db():
     finally:
         db.close()
         
+# statment 
