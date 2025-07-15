@@ -76,6 +76,6 @@ app.include_router(experiment.experimentroute,tags=["testing"])
 def ping(token: str = Depends(oauth2_scheme)):
     return {"token_received": token}
 
-@app.get("/")
+
 
 
