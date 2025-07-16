@@ -23,7 +23,7 @@ def get_all_students(db:Session):
     return db.query(Student).all()
     
 #get by id
-def get_by_id(db:Session,id:int):
+def get_by_student_id(db:Session,id:int):
     return db.query(Student).filter(Student.id == id ).first()
 
 #edit/update student
@@ -66,7 +66,7 @@ def get_all_teachers(db:Session):
     return db.query(Teacher).all()
    
 #get by id
-def get_by_id(db:Session,id:int):
+def get_by_teacher_id(db:Session,id:int):
     return db.query(Teacher).filter(Teacher.id == id ).first()
 
 #edit/update teacher
@@ -131,7 +131,7 @@ def get_all_files(db:Session):
         }
     
 #get by id
-def get_by_id(db:Session,id:int):
+def get_by_file_id(db:Session,id:int):
     file_record = db.query(Files).filter(Files.file_id == id ).first()
     if not file_record:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="file doesn't exist")
