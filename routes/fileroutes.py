@@ -1,7 +1,7 @@
 from fastapi import APIRouter,status,HTTPException,Depends,UploadFile,File,Response
 from sqlalchemy.orm import Session
 from database.connector import get_db
-from database.crud import accept_file,get_all_files,get_by_id
+from database.crud import accept_file,get_all_files,get_by_file_id
 from fastapi.responses import JSONResponse
 
 filerouter =  APIRouter(prefix="/files")
@@ -49,7 +49,7 @@ def get_all_Files(db:Session = Depends(get_db)):
 
 @filerouter.get("/by-id/{id}")
 def get_file_by_id(id = id,db:Session = Depends(get_db)):
-    return get_by_id(db = db,id=id )
+    return get_by_file_id(db = db,id=id )
     
 
 

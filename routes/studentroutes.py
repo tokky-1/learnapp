@@ -1,7 +1,7 @@
 from fastapi import APIRouter,status,HTTPException,Depends
 from sqlalchemy.orm import Session 
 from models.studentmodel import createStudentModel as CS,updateStudentModel as SUM
-from database.crud import create_student,get_all_students,get_by_id,delete_student,edit_student
+from database.crud import create_student,get_all_students,get_by_student_id,delete_student,edit_student
 from database.connector import get_db
 from database.model import Student
 from auth.cipher import verifyhash,createhash
@@ -15,7 +15,7 @@ def getStudents(db:Session = Depends(get_db)):
 
 @studentRouter.get("/by-id/{id}")
 def get_student_by_id(id = id,db:Session = Depends(get_db)):
-    return get_by_id(db = db,id=id )
+    return get_by_student_id(db = db,id=id )
     
 @studentRouter.post("/createStudent",status_code=status.HTTP_201_CREATED)
 async def create_new_student(student : CS,db:Session = Depends(get_db)):

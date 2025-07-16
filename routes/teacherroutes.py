@@ -1,6 +1,6 @@
 from fastapi import APIRouter,status,HTTPException,Depends,UploadFile,File
 from sqlalchemy.orm import Session 
-from database.crud import create_teacher,get_all_teachers,get_by_id,delete_teacher,edit_teacher,accept_file
+from database.crud import create_teacher,get_all_teachers,get_by_teacher_id,delete_teacher,edit_teacher,accept_file
 from database.connector import get_db
 from models.teachermodel import createteacherModel as CT,updateTeacherModel as UTM
 from auth.cipher import createhash,verifyhash
@@ -16,7 +16,7 @@ def getTeachers(db:Session = Depends(get_db)):
 
 @teacherRouter.get("/by-id/{id}")
 def get_teacher_by_id(id = id,db:Session = Depends(get_db)):
-    return get_by_id(db = db,id=id )
+    return get_by_teacher_id(db = db,id=id )
     
 @teacherRouter.post("/createTeacher",status_code=status.HTTP_201_CREATED)
 async def create_new_teacher(teacher : CT,db:Session = Depends(get_db) ):
