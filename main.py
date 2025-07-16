@@ -7,14 +7,14 @@ from  database.model import Student
 from auth.cipher import verifyhash,create_token,get_user
 from auth.authmodel import Token
 from middleware import ratelimit
-import time
+import time,os
 
 app = FastAPI(
     title="LEARNAPP",
     description="beginner project",
     version="1.0.0")
 
-
+port = int(os.environ.get("PORT",5000))
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 token: str = Depends(oauth2_scheme)
 headers = {
@@ -76,6 +76,4 @@ app.include_router(experiment.experimentroute,tags=["testing"])
 def ping(token: str = Depends(oauth2_scheme)):
     return {"token_received": token}
 
-@app.get("/")
-
-
+#@app.get("/")
